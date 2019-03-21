@@ -15,7 +15,7 @@ public class MyDeque<E>{
     size=0;
   }
   public int size(){
-    return this.end-this.start;
+    return this.size;
   }
   public String toString(){ }
   public void addFirst(E element){ }
