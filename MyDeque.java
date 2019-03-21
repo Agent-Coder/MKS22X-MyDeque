@@ -19,15 +19,30 @@ public class MyDeque<E>{
   }
   public String toString(){
     String s="{";
-    for(int i=this.start;i<=this.end;i++){
-      s+=data[i]+" ";
+    if(this.start>this.end){
+      for(int i=this.start;i<data.length;i++){
+        s+=data[i]+" ";
+      }
+      for(int i=0;i<=data.end;i++){
+        s+=data[i]+" ";
+      }
+    }
+    else{
+      for(int i=this.start;i<=this.end;i++){
+        s+=data[i]+" ";
+      }
     }
     return s.substring(0,s.length()-1)+"}";
   }
-  public void addFirst(E element){ }
+  public void addFirst(E element){
+  }
   public void addLast(E element){ }
-  public E removeFirst(E element){ }
-  public E removeLast(E element){ }
-  public E getFirst(E element){ }
-  public E getLast(E element){ }
+  public E removeFirst(){ }
+  public E removeLast(){ }
+  public E getFirst(){
+    return data[this.start];
+  }
+  public E getLast(){
+    return data[this.end];
+  }
 }
