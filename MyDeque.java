@@ -35,9 +35,6 @@ public class MyDeque<E>{
     return s.substring(0,s.length()-1)+"}";
   }
   public void addFirst(E element){
-
-  }
-  public void addLast(E element){
     if(this.size==data.length){
       E[] copy=(E[])new Object[2*data.length+1];
       for (int i=0;i<data.length;i++) {
@@ -45,6 +42,31 @@ public class MyDeque<E>{
           copy[i]=element;
         }
         copy[i]=data[i-1];
+      }
+      this.size++;
+    }
+    else{
+      if(start==0){
+        data[data.length-1]=element;
+        this.start=data.length;
+      }
+      else{
+        data[start-1]=element;
+        this.start--;
+      }
+      this.size++;
+    }
+  }
+  public void addLast(E element){
+    if(this.size==data.length){
+      E[] copy=(E[])new Object[2*data.length+1];
+      for (int i=0;i<=data.length;i++) {
+        if(i==data.length){
+          copy[i]=element;
+        }
+        else{
+          copy[i]=data[i];
+        }
       }
       this.end++;
       this.size++;
