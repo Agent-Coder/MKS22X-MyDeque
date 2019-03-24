@@ -1,3 +1,4 @@
+import java.util.*;
 public class MyDeque<E>{
   private E[] data;
   private int size, start, end;
@@ -38,6 +39,9 @@ public class MyDeque<E>{
     return s.substring(0,s.length()-1)+"}";
   }
   public void addFirst(E element){
+    if(element==null){
+      throw new NullPointerException();
+    }
     if(this.size==data.length){
       E[] copy=(E[])new Object[2*data.length+1];
       for (int i=0;i<data.length;i++) {
@@ -61,6 +65,9 @@ public class MyDeque<E>{
     }
   }
   public void addLast(E element){
+    if(element==null){
+      throw new NullPointerException();
+    }
     if(this.size==data.length){
       E[] copy=(E[])new Object[2*data.length+1];
       for (int i=0;i<=data.length;i++) {
@@ -88,6 +95,9 @@ public class MyDeque<E>{
   }
   public E removeFirst(){
     E r=data[this.start];
+    if(r==null){
+      throw new NoSuchElementException();
+    }
     if(this.start==data.length){
       this.start=0;
     }
@@ -99,6 +109,9 @@ public class MyDeque<E>{
   }
   public E removeLast(){
     E r=data[this.end];
+    if(r==null){
+      throw new NoSuchElementException();
+    }
     if(this.end==0){
       this.end=data.length;
     }
@@ -109,9 +122,15 @@ public class MyDeque<E>{
     return r;
   }
   public E getFirst(){
+    if(data[this.start]==null){
+      throw new NoSuchElementException();
+    }
     return data[this.start];
   }
   public E getLast(){
+    if(data[this.end]==null){
+      throw new NoSuchElementException();
+    }
     return data[this.end];
   }
   /*public E copy(MyDeque newest){
