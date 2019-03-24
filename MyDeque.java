@@ -48,24 +48,21 @@ public class MyDeque<E>{
     else if(this.size==data.length){
       E[] copy=(E[])new Object[2*data.length+1];
       for (int i=0;i<data.length;i++){
-        if(i==0){
-          copy[i]=element;
-        }
-        else{
-        copy[i]=data[i-1];
+        copy[i]=data[i];
       }
-      }
-      this.end++;
       data=copy;
+      data[this.size]=element;
+      //System.out.println("new start"+this.size);
+      this.start=this.size;
     }
     else{
       data[this.size]=element;
       this.start=this.size;
     }
     this.size++;
-    System.out.println(Arrays.toString(data));
-    System.out.println(this.start);
-    System.out.println(this.end);
+    //System.out.println(Arrays.toString(data));
+    //System.out.println("start"+this.start);
+    //System.out.println(this.end);
   }
   public void addLast(E element){
     if(element==null){
@@ -144,6 +141,15 @@ public class MyDeque<E>{
     MyDeque<Integer> deque = new MyDeque<>();
     deque.addFirst(0);
     deque.addFirst(1);
+    deque.addFirst(2);
+    deque.addFirst(3);
+    deque.addFirst(4);
+    deque.addFirst(5);
+    deque.addFirst(6);
+    deque.addFirst(7);
+    deque.addFirst(8);
+    deque.addFirst(9);
+    deque.addFirst(10);
     System.out.println(deque);
   }
 }
