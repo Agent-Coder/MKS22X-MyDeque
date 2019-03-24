@@ -31,7 +31,7 @@ public class MyDeque<E>{
         s+=data[i]+" ";
       }
     }
-    else if(this.start<this.end){
+    else{
       for(int i=this.start;i<=this.end;i++){
         s+=data[i]+" ";
       }
@@ -42,33 +42,39 @@ public class MyDeque<E>{
     if(element==null){
       throw new NullPointerException();
     }
-    if(this.size==data.length){
+    if(data[this.start]==null){
+      data[this.start]=element;
+    }
+    else if(this.size==data.length){
       E[] copy=(E[])new Object[2*data.length+1];
-      for (int i=0;i<data.length;i++) {
+      for (int i=0;i<data.length;i++){
         if(i==0){
           copy[i]=element;
         }
+        else{
         copy[i]=data[i-1];
       }
-      this.size++;
+      }
+      this.end++;
+      data=copy;
     }
     else{
-      if(start==0){
-        data[data.length-1]=element;
-        this.start=data.length;
-      }
-      else{
-        data[start-1]=element;
-        this.start--;
-      }
-      this.size++;
+      data[this.size]=element;
+      this.start=this.size;
     }
+    this.size++;
+    System.out.println(Arrays.toString(data));
+    System.out.println(this.start);
+    System.out.println(this.end);
   }
   public void addLast(E element){
     if(element==null){
       throw new NullPointerException();
     }
-    if(this.size==data.length){
+    if(data[this.end]==null){
+      data[this.end]=element;
+    }
+    else if(this.size==data.length){
       E[] copy=(E[])new Object[2*data.length+1];
       for (int i=0;i<=data.length;i++) {
         if(i==data.length){
@@ -78,8 +84,8 @@ public class MyDeque<E>{
           copy[i]=data[i];
         }
       }
+      data=copy;
       this.end++;
-      this.size++;
     }
     else{
       if(end==data.length-1){
@@ -87,18 +93,18 @@ public class MyDeque<E>{
         this.end=0;
       }
       else{
-        data[end+1]=element;
+        data[this.end+1]=element;
         this.end++;
       }
-      this.size++;
     }
+    this.size++;
   }
   public E removeFirst(){
     E r=data[this.start];
     if(r==null){
       throw new NoSuchElementException();
     }
-    if(this.start==data.length){
+    if(this.start==data.length-1){
       this.start=0;
     }
     else{
@@ -113,7 +119,7 @@ public class MyDeque<E>{
       throw new NoSuchElementException();
     }
     if(this.end==0){
-      this.end=data.length;
+      this.end=this.size-1;
     }
     else{
       this.end--;
@@ -133,23 +139,11 @@ public class MyDeque<E>{
     }
     return data[this.end];
   }
-  /*public E copy(MyDeque newest){
-    String s="s";
-    MyDeque ary=new MyDeque(this.data.length*2+1);
-    if(this.start>this.end){
-      for(int i=this.start;i<this.size;i++){
-        copy[i]=this.data[i]+" ";
-      }
-      for(int i=0;i<=data.length;i++){
-        s+=data[i]+" ";
-      }
-    }
-    else{
-      for(int i=this.start;i<=this.end;i++){
-        s+=data[i]+" ";
-      }
-    }
-  }
 
-  */
+  public static void main(String[] args) {
+    MyDeque<Integer> deque = new MyDeque<>();
+    deque.addFirst(0);
+    deque.addFirst(1);
+    System.out.println(deque);
+  }
 }
