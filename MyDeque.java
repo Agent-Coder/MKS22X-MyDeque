@@ -19,6 +19,9 @@ public class MyDeque<E>{
   }
   public String toString(){
     String s="{";
+    if(data[this.start]==null){
+      return s+"}";
+    }
     if(this.start>this.end){
       for(int i=this.start;i<this.size;i++){
         s+=data[i]+" ";
@@ -27,7 +30,7 @@ public class MyDeque<E>{
         s+=data[i]+" ";
       }
     }
-    else{
+    else if(this.start<this.end){
       for(int i=this.start;i<=this.end;i++){
         s+=data[i]+" ";
       }
@@ -83,8 +86,28 @@ public class MyDeque<E>{
       this.size++;
     }
   }
-  public E removeFirst(){ }
-  public E removeLast(){ }
+  public E removeFirst(){
+    E r=data[this.start];
+    if(this.start==data.length){
+      this.start=0;
+    }
+    else{
+      this.start++;
+    }
+      this.size--;
+      return r;
+  }
+  public E removeLast(){
+    E r=data[this.end];
+    if(this.end==0){
+      this.end=data.length;
+    }
+    else{
+      this.end--;
+    }
+    this.size--;
+    return r;
+  }
   public E getFirst(){
     return data[this.start];
   }
