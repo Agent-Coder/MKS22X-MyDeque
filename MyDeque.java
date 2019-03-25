@@ -162,9 +162,6 @@ public class MyDeque<E>{
     }
     return data[this.end];
   }
-  public int getF(){
-    return this.start;
-  }
   //public void
   /*public static void main(String[] args) {
     MyDeque<Integer> deque = new MyDeque<>();
