@@ -3,29 +3,31 @@ public class Calculator{
      *Assume valid postfix notation, separated by spaces.
      */
     public static double eval(String s){
-      String[] ary=s.split(0);
+      String[] ary=s.split(" ",0);
       MyDeque<String> expression=new MyDeque<>(ary.length);
       for (int i=0;i<ary.length;i++) {
-        if(ary[i]=="+"){
-          expression.addLast(expression.removeLast().parseInt()+expression.removeLast().parseInt());
+        System.out.println(ary[i]);
+        if(ary[i].equals("+")){
+          System.out.println(Integer.parseInt(expression.removeLast()));
+          expression.addLast(Integer.parseInt(expression.removeLast())+Integer.parseInt(expression.removeLast())+"");
         }
-        else if(ary[i]=="-"){
-          expression.addLast(expression.removeLast().parseInt()-expression.removeLast().parseInt());
+        else if(ary[i].equals("-")){
+          expression.addLast(Integer.parseInt(expression.removeLast())-Integer.parseInt(expression.removeLast())+"");
         }
-        else if(ary[i]=="*"){
-          expression.addLast(expression.removeLast().parseInt()*expression.removeLast().parseInt());
+        else if(ary[i].equals("*")){
+          expression.addLast(Integer.parseInt(expression.removeLast())*Integer.parseInt(expression.removeLast())+"");
         }
-        else if(ary[i]=="/"){
-          expression.addLast(expression.removeLast().parseInt()/expression.removeLast().parseInt());
+        else if(ary[i].equals("/")){
+          expression.addLast(Integer.parseInt(expression.removeLast())/Integer.parseInt(expression.removeLast())+"");
         }
-        else if(ary[i]=="%"){
-          expression.addLast(expression.removeLast().parseInt()%expression.removeLast().parseInt());
+        else if(ary[i].equals("%")){
+          expression.addLast(Integer.parseInt(expression.removeLast())%Integer.parseInt(expression.removeLast())+"");
         }
         else{
           expression.addLast(ary[i]);
         }
       }
-      return expression.removeLast().parseInt();
+      return Integer.parseInt(expression.removeLast());
     }
     public static void main(String[] args) {
       System.out.println(eval("10 2.0 +"));
