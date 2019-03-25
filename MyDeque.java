@@ -118,20 +118,20 @@ public class MyDeque<E>{
     //System.out.println(this.start);
     E r=data[this.start];
     if(r==null){
+      System.out.println(this.start);
+      System.out.println(Arrays.toString(data));
       //System.out.println("1");
       throw new NoSuchElementException();
     }
     //System.out.println("start is at"+this.start);
-    if(this.start>this.end){
-      this.start--;
+    if(this.start==data.length-1){
+      this.start=0;
     }
     else{
-      //System.out.println("YES");
       this.start++;
-      //System.out.println("--"+data[this.start]);
     }
-      this.size--;
-      return r;
+    this.size--;
+    return r;
   }
   public E removeLast(){
     E r=data[this.end];
@@ -139,8 +139,8 @@ public class MyDeque<E>{
       //System.out.println("2");
       throw new NoSuchElementException();
     }
-    if(this.end<this.start){
-      this.end++;
+    if(this.end==0){
+      this.end=data.length-1;
     }
     else{
       this.end--;
@@ -162,15 +162,17 @@ public class MyDeque<E>{
     }
     return data[this.end];
   }
+  public int getF(){
+    return this.start;
+  }
   //public void
-  public static void main(String[] args) {
+  /*public static void main(String[] args) {
     MyDeque<Integer> deque = new MyDeque<>();
     for (int i = 0; i <= 10; i++) {
       deque.addLast(i);
     }
-    for (int i = 0; i < 10; i++) {
-      deque.removeLast();
-    }
     System.out.println(deque);
-  }
+    deque.removeLast();
+    System.out.println(deque);
+  }*/
 }
