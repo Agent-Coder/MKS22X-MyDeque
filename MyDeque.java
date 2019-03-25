@@ -168,6 +168,9 @@ public class MyDeque<E>{
     for (int i = 0; i <= 10; i++) {
       deque.addLast(i);
     }
+    for (int i = 0; i < 10; i++) {
+      deque.removeLast();
+    }
     System.out.println(deque);
   }
 }
